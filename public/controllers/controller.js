@@ -32,12 +32,16 @@ function appCtrl($scope, $http){
 			refresh();
 		});
 	};
-
+ 
 	$scope.update = function(id) {
 		console.log($scope.contact._id);
 		$http.put('/contactlist/' + $scope.contact._id, $scope.contact).success(function(response) {
-			$scope.contact = response;
 			refresh();
 		});
 	};
+
+	$scope.deselect = function() {
+		$scope.contact = "";
+	};
+
 } 
