@@ -22,5 +22,21 @@ app.post('/contactlist', function (req,res){
   });
  });
 
+app.delete('/contactlist/:id' , function(req,res){
+	var id = req.params.id;
+	console.log(id);
+	db.contactlist.remove({_id: mongojs.ObjectId(id)}, function(err, doc) {
+       res.json(doc);
+	})
+});
+
+app.get('/contactlist/:id', function(req,res) {
+	var id = req.params.id;
+	console.log(id);
+	db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function(err, doc) {
+       res.json(doc);
+   })
+});
+
 app.listen(3000);
 console.log("Server on 3000");
